@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SimpleCommits | Coming Soon</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Preloader -->
+  <div class="preloader">
+    <div class="preloader-inner">
+      <div class="logo-circle">
+        <span class="logo-sc">SC</span>
+      </div>
+      <div class="loader-dots">
+        <span></span><span></span><span></span>
+      </div>
+      <p class="loading-text">Loading SimpleCommits...</p>
+    </div>
+  </div>
+
+  <!-- Animated Background -->
+  <div class="bg-gradient"></div>
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+
+  <!-- Main Content -->
+  <div class="page-wrapper">
+    <header class="header">
+      <div class="brand">
+        <div class="brand-logo">SC</div>
+        <div class="brand-text">
+          <span class="brand-name">SimpleCommits</span>
+          <span class="brand-tagline">Making progress simple, one commit at a time.</span>
+        </div>
+      </div>
+      <div class="header-pill animated-pill">
+        <span class="dot online"></span>
+        Work in progress
+      </div>
+    </header>
+
+    <main class="main">
+      <section class="hero">
+        <div class="hero-text slide-up">
+          <p class="chip">🚧 Currently under development</p>
+          <h1 class="hero-title">
+            We’re crafting something
+            <span class="highlight">clean & powerful</span>.
+          </h1>
+          <p class="hero-subtitle">
+            Our workspace isn’t ready yet, but it’s in the works.  
+            Stay tuned while we build the next chapter for <strong>SimpleCommits</strong>.
+          </p>
+
+          <div class="cta-group">
+            <a href="mailto:simplecommits@gmail.com" class="btn primary-btn">
+              Contact us
+              <span class="btn-glow"></span>
+            </a>
+            <button class="btn ghost-btn" id="notifyBtn">
+              Notify me when live
+            </button>
+          </div>
+
+          <div class="email-line">
+            📧 Reach us anytime at
+            <a href="mailto:simplecommits@gmail.com">simplecommits@gmail.com</a>
+          </div>
+
+          <div class="mini-info">
+            <div class="mini-card float-up">
+              <span class="mini-label">Status</span>
+              <span class="mini-value">Coming Soon</span>
+            </div>
+            <div class="mini-card float-up delay-1">
+              <span class="mini-label">Version</span>
+              <span class="mini-value">v0.0.1 • In progress</span>
+            </div>
+            <div class="mini-card float-up delay-2">
+              <span class="mini-label">Focus</span>
+              <span class="mini-value">Clean & simple workflow</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual slide-in-right">
+          <div class="glass-card">
+            <div class="glass-header">
+              <span class="glass-dot red"></span>
+              <span class="glass-dot yellow"></span>
+              <span class="glass-dot green"></span>
+              <span class="glass-title">simplecommits.dev</span>
+            </div>
+            <div class="glass-body">
+              <div class="fake-terminal">
+                <div class="terminal-line">
+                  <span class="prompt">$</span> git init simplecommits
+                </div>
+                <div class="terminal-line">
+                  <span class="prompt">$</span> git commit -m "<span class="typing-text"></span><span class="cursor"></span>"
+                </div>
+                <div class="terminal-hints">
+                  <span class="hint-pill">clean ui</span>
+                  <span class="hint-pill">simple workflow</span>
+                  <span class="hint-pill">coming soon</span>
+                </div>
+              </div>
+            </div>
+            <div class="glass-footer">
+              <div class="progress-label">Launching soon</div>
+              <div class="progress-bar">
+                <div class="progress-fill"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="floating-badge badge-1">
+            <span>⚡ Minimal, modern, smooth.</span>
+          </div>
+          <div class="floating-badge badge-2">
+            <span>⏳ Just a little more patience.</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="timeline">
+        <h2 class="section-title fade-in">Roadmap Snapshot</h2>
+        <div class="timeline-track">
+          <div class="timeline-item fade-in delay-0">
+            <div class="bullet"></div>
+            <div class="timeline-content">
+              <h3>Phase 1 — Concept</h3>
+              <p>Defining what SimpleCommits should feel like: simple, fast, and distraction-free.</p>
+            </div>
+          </div>
+          <div class="timeline-item fade-in delay-1">
+            <div class="bullet"></div>
+            <div class="timeline-content">
+              <h3>Phase 2 — Design & Prototype</h3>
+              <p>Crafting layouts, animations, and a clean interface you’ll actually enjoy using.</p>
+            </div>
+          </div>
+          <div class="timeline-item fade-in delay-2">
+            <div class="bullet"></div>
+            <div class="timeline-content">
+              <h3>Phase 3 — Build & Polish</h3>
+              <p>Turning ideas into reality, testing flows, and smoothing out the rough edges.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>© <span id="year"></span> SimpleCommits. All rights reserved.</span>
+      <span class="footer-sep">•</span>
+      <span>Contact: <a href="mailto:simplecommits@gmail.com">simplecommits@gmail.com</a></span>
+    </footer>
+  </div>
+
+  <div class="toast" id="toast">
+    <span>Notification option isn’t live yet, but contact us by email. 💌</span>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
