@@ -1,78 +1,107 @@
-// When page fully loads
+// --------- Preloader handling ---------
 window.addEventListener("load", () => {
-  const preloader = document.querySelector(".preloader");
-  const wrapper = document.querySelector(".page-wrapper");
-
-  // Hide preloader
+  // Give a tiny delay for smoother transition
   setTimeout(() => {
-    preloader.classList.add("hidden");
-    wrapper.classList.add("visible");
-  }, 800); // small delay to let the animation play
+    document.body.classList.add("loaded");
+  }, 400);
 });
 
-// Set current year in footer
-document.addEventListener("DOMContentLoaded", () => {
-  const yearSpan = document.getElementById("year");
-  if (yearSpan) {
-    yearSpan.textContent = new Date().getFullYear();
+// --------- Typing effect in hero title ---------
+const typingTarget = document.getElementById("typing-text");
+const cursor = document.querySelector(".cursor");
+
+// Sentences related to Android work
+const phrases = [
+  "Android apps.",
+  "smooth user journeys.",
+  "clean, stable experiences.",
+  "apps that just work."
+];
+
+let currentPhraseIndex = 0;
+let charIndex = 0;
+let isDeleting = false;
+
+function typeLoop() {
+  if (!typingTarget) return;
+
+  const currentPhrase = phrases[currentPhraseIndex];
+  const displayed = currentPhrase.substring(0, charIndex);
+
+  typingTarget.textContent = displayed;
+
+  if (!isDeleting && charIndex < currentPhrase.length) {
+    charIndex++;
+    setTimeout(typeLoop, 90);
+  } else if (!isDeleting && charIndex === currentPhrase.length) {
+    setTimeout(() => {
+      isDeleting = true;
+      typeLoop();
+    }, 1100);
+  } else if (isDeleting && charIndex > 0) {
+    charIndex--;
+    setTimeout(typeLoop, 50);
+  } else if (isDeleting && charIndex === 0) {
+    isDeleting = false;
+    currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
+    setTimeout(typeLoop, 200);
   }
+}
 
-  // Simple typing effect in the fake terminal
-  const typingSpan = document.querySelector(".typing-text");
-  const text = 'initial commit: "simple, clean, commits"';
-  let index = 0;
+typeLoop();
 
-  function type() {
-    if (!typingSpan) return;
+// --------- Phone tilt effect ---------
+const phoneCard = document.getElementById("phone-card");
 
-    if (index <= text.length) {
-      typingSpan.textContent = text.slice(0, index);
-      index++;
-    } else {
-      // pause and restart typing
-      setTimeout(() => {
-        index = 0;
-        typingSpan.textContent = "";
-      }, 1800);
+if (phoneCard) {
+  phoneCard.addEventListener("mousemove", (e) => {
+    const rect = phoneCard.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+
+    const rotateX = (y / rect.height) * -10; // tilt up/down
+    const rotateY = (x / rect.width) * 12; // tilt left/right
+
+    const phone = phoneCard.querySelector(".phone");
+    if (phone) {
+      phone.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(0)`;
     }
-  }
+  });
 
-  setInterval(type, 80);
+  phoneCard.addEventListener("mouseleave", () => {
+    const phone = phoneCard.querySelector(".phone");
+    if (phone) {
+      phone.style.transform = "rotateX(0deg) rotateY(0deg) translateZ(0)";
+    }
+  });
+}
 
-  // Intersection observer for scroll animations
-  const animatedEls = document.querySelectorAll(
-    ".slide-up, .slide-in-right, .fade-in, .float-up"
-  );
+// --------- Scroll reveal animations ---------
+const revealElements = document.querySelectorAll(".reveal");
 
+if ("IntersectionObserver" in window && revealElements.length) {
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add("visible-anim");
+          entry.target.classList.add("visible");
           observer.unobserve(entry.target);
         }
       });
     },
     {
-      threshold: 0.15,
+      threshold: 0.18
     }
   );
 
-  animatedEls.forEach((el) => observer.observe(el));
+  revealElements.forEach((el) => observer.observe(el));
+} else {
+  // Fallback: show everything if IntersectionObserver not supported
+  revealElements.forEach((el) => el.classList.add("visible"));
+}
 
-  // Toast for "Notify me" button
-  const notifyBtn = document.getElementById("notifyBtn");
-  const toast = document.getElementById("toast");
-  let toastTimeout = null;
-
-  if (notifyBtn && toast) {
-    notifyBtn.addEventListener("click", () => {
-      toast.classList.add("show");
-
-      if (toastTimeout) clearTimeout(toastTimeout);
-      toastTimeout = setTimeout(() => {
-        toast.classList.remove("show");
-      }, 2600);
-    });
-  }
-});
+// --------- Dynamic year in footer ---------
+const yearSpan = document.getElementById("year");
+if (yearSpan) {
+  yearSpan.textContent = new Date().getFullYear();
+}
