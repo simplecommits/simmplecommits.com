@@ -1,0 +1,3 @@
+name = "your-worker-name"
+main = "src/index.ts" # or index.js — adjust to your actual file
+compatibility_date = "2025-11-19"
